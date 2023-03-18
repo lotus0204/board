@@ -13,19 +13,19 @@ export class UsersController {
 
   @Post('/email-verify')
   async verifyEmail(@Body() dto: VerfyEmailDto): Promise<string> {
-    console.log(dto);
-    return;
+    const { signupVerfyToken } = dto;
+    return await this.usersService.verfyEmail(signupVerfyToken);
   }
 
   @Post('/login')
   async login(@Body() dto: UserLogInDto): Promise<string> {
-    console.log(dto);
-    return;
+    const { email, password } = dto;
+
+    return await this.usersService.login(email, password);
   }
 
   @Get('/:id')
   async getUserInfo(@Param('id') userId: string): Promise<string> {
-    console.log(userId);
-    return;
+    return await this.usersService.getUserInfo(userId);
   }
 }
